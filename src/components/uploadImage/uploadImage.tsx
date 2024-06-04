@@ -1,5 +1,7 @@
 "use client";
+import axios from "axios";
 import React, { useState } from "react";
+import { BACKEND_URL } from "../../../utils/utils";
 
 function UploadImage({
   onImageAdded,
@@ -9,8 +11,19 @@ function UploadImage({
   image?: string;
 }) {
   const [uploading, setUploading] = useState(false);
-  function onFileSelect() {
-    setUploading(true)
+
+  async function onFileSelect(event: any) {
+    setUploading(true);
+    const file = event.target.files[0];
+    const response = await axios.get(
+      `http://localhost:8000/v1/user/presignedUrl`,
+      {
+        headers: {
+          Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxNzUwMzQ2NH0.tjl4bNX1hJQ7Suqykz5pAIO4w7S8vk1dfANZWfbZpfY"
+        },
+      }
+    );
+    console.log(response);
   }
   if (image) {
     return <img className={"p-2 w-96 rounded"} src={image} />;
