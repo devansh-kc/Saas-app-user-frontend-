@@ -1,10 +1,42 @@
 "use client";
 import React, { useState } from "react";
 import UploadImage from "../uploadImage/uploadImage";
+import axios from "axios";
+import { BACKEND_URL } from "../../../utils/utils";
+import { useRouter } from "next/navigation";
 
 function Upload() {
   const [images, setImages] = useState<string[]>([]);
   const [title, setTitle] = useState("");
+  const router = useRouter();
+
+  async function onSubmit() {
+    try {
+      const response = await axios.post(
+        `http://localhost:8000/v1/user/task`,
+        {
+          options: images.map((image) => ({
+            imageUrl: image,
+          })),
+          title,
+          signature:"0xcv123456"
+        },
+        {
+          headers: {
+            Authorization:
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxNzUwMzQ2NH0.tjl4bNX1hJQ7Suqykz5pAIO4w7S8vk1dfANZWfbZpfY",
+          },
+        }
+        // headers:{
+        //   Authorization:localStorage.getItem("token")
+        // }
+      );
+      console.log(response);
+      router.push(`/task/${response.data.message}`)
+    } catch (error) {
+      throw error;
+    }
+  }
   return (
     <div className="flex justify-center">
       <div className="max-w-screen-lg w-full">
@@ -42,14 +74,16 @@ function Upload() {
         </div>
 
         <div className="ml-4 pt-2 flex justify-center">
-          <UploadImage onImageAdded={(imageUrl) => {
-            setImages(i => [...i, imageUrl]);
-        }} />
+          <UploadImage
+            onImageAdded={(imageUrl) => {
+              setImages((i) => [...i, imageUrl]);
+            }}
+          />
         </div>
 
         <div className="flex justify-center">
           <button
-            //   onClick={txSignature ? onSubmit : makePayment}
+            onClick={onSubmit}
             type="button"
             className="mt-4 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
           >
