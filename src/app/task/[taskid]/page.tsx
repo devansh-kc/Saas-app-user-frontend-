@@ -36,10 +36,11 @@ function Page() {
 
   useEffect(() => {
     getTaskDetails(taskid.toString()).then((data) => {
-      setResult(data.data);
+      setResult(data.data.result);
       setTaskDetails(data.taskDetails);
     });
   }, [taskid]);
+  console.log(result)
   return (
     <div>
       <AppBar />
