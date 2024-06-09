@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
 import React, { useState } from "react";
-import { BACKEND_URL, CLOUDFRONT_URL } from "../../../utils/utils";
+import { BACKEND_URL, CLOUDFRONT_URL } from "../../utils/utils";
 
 function UploadImage({
   onImageAdded,

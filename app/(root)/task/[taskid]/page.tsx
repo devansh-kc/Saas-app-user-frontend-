@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import AppBar from "@/components/AppBar/AppBar";
+import AppBar from "../../../../components/Appbar/Appbar";
 import axios from "axios";
 import { BACKEND_URL } from "../../../../utils/utils";
 import { useParams } from "next/navigation";

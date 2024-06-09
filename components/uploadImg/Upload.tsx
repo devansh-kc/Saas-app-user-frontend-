@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import UploadImage from "../uploadImage/uploadImage";
+import UploadImage from "../uploadImage/UploadImage";
 import axios from "axios";
-import { BACKEND_URL } from "../../../utils/utils";
+import { BACKEND_URL } from "../../utils/utils";
 import { useRouter } from "next/navigation";
 
 function Upload() {
