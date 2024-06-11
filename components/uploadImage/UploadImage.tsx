@@ -20,8 +20,7 @@ function UploadImage({
         `http://localhost:8000/v1/user/presignedUrl`,
         {
           headers: {
-            Authorization:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxNzUwMzQ2NH0.tjl4bNX1hJQ7Suqykz5pAIO4w7S8vk1dfANZWfbZpfY",
+            Authorization: localStorage.getItem("token"),
           },
         }
       );
