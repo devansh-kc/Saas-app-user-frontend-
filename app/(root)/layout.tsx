@@ -27,7 +27,7 @@ export default function RootLayout({
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [network]
   );
-  const endpoint = useMemo(() => clusterApiUrl(network), [network]);
+  const endpoint = useMemo(() => clusterApiUrl(network), [network]); 
 
   return (
     <ConnectionProvider endpoint={endpoint}>
