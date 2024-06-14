@@ -4,7 +4,7 @@ import UploadImage from "../uploadImage/UploadImage";
 import axios from "axios";
 import { BACKEND_URL } from "../../utils/utils";
 import { useRouter } from "next/navigation";
-import { PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
+import { Keypair, PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 function Upload() {
   const [images, setImages] = useState<string[]>([]);
@@ -13,8 +13,7 @@ function Upload() {
   const { connection } = useConnection();
   const { publicKey, sendTransaction } = useWallet();
   const router = useRouter();
-  console.log(publicKey)
-
+  console.log(txSignature)
   async function onSubmit() {
     try {
       const response = await axios.post(
@@ -43,7 +42,7 @@ function Upload() {
     const transaction = new Transaction().add(
       SystemProgram.transfer({
         fromPubkey: publicKey!,
-        toPubkey: new PublicKey("0x4f81D90A9B7BF1464beCD16266570946FA71e6a0"),
+        toPubkey: new PublicKey(process.env.NEXT_PUBLIC_PUBLIC_KEY!),
         lamports: 100000000,
       })
     );
@@ -61,8 +60,11 @@ function Upload() {
       lastValidBlockHeight,
       signature,
     });
+    console.log(signature)
     setTxSignature(signature);
+    console.log(txSignature)
   }
+
   return (
     <div className="flex justify-center">
       <div className="max-w-screen-lg w-full">

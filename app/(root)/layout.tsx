@@ -21,13 +21,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const network = WalletAdapterNetwork.Mainnet;
+  const network = WalletAdapterNetwork.Devnet;
   const wallets = useMemo(
     () => [],
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [network]
   );
-  const endpoint = useMemo(() => clusterApiUrl(network), [network]); 
+  const endpoint = "https://api.testnet.solana.com";
 
   return (
     <ConnectionProvider endpoint={endpoint}>

@@ -11,7 +11,7 @@ async function getTaskDetails(taskId: string) {
     {
       headers: {
         Authorization:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxNzUwMzQ2NH0.tjl4bNX1hJQ7Suqykz5pAIO4w7S8vk1dfANZWfbZpfY",
+        localStorage.getItem("token")
       },
     }
   );
@@ -40,7 +40,6 @@ function Page() {
       setTaskDetails(data.taskDetails);
     });
   }, [taskid]);
-  console.log(result)
   return (
     <div>
       <AppBar />
