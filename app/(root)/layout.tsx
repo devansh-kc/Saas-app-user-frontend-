@@ -27,7 +27,7 @@ export default function RootLayout({
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [network]
   );
-  const endpoint = "https://api.testnet.solana.com";
+  const endpoint = "https://api.devnet.solana.com/";
 
   return (
     <ConnectionProvider endpoint={endpoint}>

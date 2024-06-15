@@ -36,15 +36,17 @@ function Page() {
 
   useEffect(() => {
     getTaskDetails(taskid.toString()).then((data) => {
+      console.log(data)
       setResult(data.data.result);
-      setTaskDetails(data.taskDetails);
+      setTaskDetails(data.data.taskDetails);
     });
   }, [taskid]);
+
   return (
     <div>
       <AppBar />
-      <div className="text-2xl pt-20 flex justify-center">
-        {taskDetails?.title}
+      <div className="text-5xl pt-20 flex font-bold font-mono  justify-center">
+        {taskDetails.title}
       </div>
       <div className="flex justify-center pt-8">
         {" "}
