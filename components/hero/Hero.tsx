@@ -1,14 +1,13 @@
-"use client"
+"use client";
 
 import React from "react";
 export const Hero = () => {
-    return (
-      <div className="text-black pt-10">
-        <div className="text-2xl flex justify-center">Welcome to Turkify</div>
-        <div className="text-lg flex justify-center pt-8">
-          Your one stop destination to getting your data labelled
-        </div>
-      </div>
-    );
-  };
-  
+  return (
+    <div className="text-center mb-8">
+      <h2 className="text-3xl font-bold">Welcome to Turkify</h2>
+      <p className="text-muted-foreground">
+        Your one stop destination to getting your data labelled
+      </p>
+    </div>
+  );
+};
